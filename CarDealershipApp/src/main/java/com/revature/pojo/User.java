@@ -3,6 +3,8 @@ package com.revature.pojo;
 public class User {
 	private String userName;
 	private String password;
+	//Since user policy shouldn't be limited to just Emp or Cust I made it a string and not a boolean, 
+	//There is an ENUM that defines these policies
 	private String userPolicy;
 
 	public User() {
