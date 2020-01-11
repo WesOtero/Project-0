@@ -1,12 +1,15 @@
 package com.revature.pojo;
 
+import java.util.HashMap;
+
 public class Car {
 	private String vinNumber;
 	private String make;
 	private String model;
 	private String year;
 	private boolean usedCondition;
-	private Double price;
+	//Users can make offers for the car, so each car has a HashSet of offers <"Username","Offer Amount">
+	private HashMap<String, Double> offers;
 
 	public Car() {
 
@@ -61,4 +64,13 @@ public class Car {
 		this.usedCondition = usedCondition;
 	}
 
+	public HashMap<String, Double> getOffers() {
+		return offers;
+	}
+
+	public void setOffers(HashMap<String, Double> offers) {
+		this.offers = offers;
+	}
+	
+	
 }

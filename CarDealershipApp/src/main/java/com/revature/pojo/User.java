@@ -5,6 +5,17 @@ public class User {
 	private String password;
 	private String userPolicy;
 
+	public User() {
+
+	}
+
+	public User(String userName, String password, String userPolicy) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.userPolicy = userPolicy;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
