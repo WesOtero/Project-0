@@ -1,5 +1,5 @@
 package com.revature.service;
 
-public class CustomerLoginService {
+public class CustomerLoginService extends UserLoginService {
 
 }
