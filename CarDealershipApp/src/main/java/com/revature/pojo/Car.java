@@ -91,8 +91,8 @@ public class Car {
 
 	@Override
 	public String toString() {
-		return "Vin Number: " + this.vinNumber + " Make: " + this.make + " Model: " + this.model
-				+ " Year: " + this.year + " Offers: " + this.offers ;
+		return "| " + this.vinNumber + "  \t| " + this.make + " \t| " + this.model
+				+ " \t| " + this.year + " \t| " + this.offers + " \t| ";
 	}
 
 }
