@@ -3,6 +3,7 @@ package com.revature.CarDealershipApp;
 import java.util.Scanner;
 
 import com.revature.pojo.User;
+import com.revature.service.CarBidService;
 import com.revature.service.CarRegistrationService;
 import com.revature.service.CarViewService;
 import com.revature.service.UserAuthenticationService;
@@ -29,9 +30,14 @@ public class App {
 		UserRemovalService userRemvServ = new UserRemovalService();
 		CarRegistrationService carRegServ = new CarRegistrationService();
 		CarViewService carViewServ = new CarViewService();
+		CarBidService carBidServ = new CarBidService();
+		userRegServ.registerCustomer("Rando", "Person");
 		carRegServ.addCar("vin1", "N", "A", "2", 13000D, true);
 		carRegServ.addCar("vin2", "Nissan", "m", "2016", 13000D, false);
 		carViewServ.viewCars();
+		
+		carBidServ.addOffer("vin2", "Rando", 1000D);
+		carBidServ.getCarOffer("vin2", "Rando");
 		Boolean run = true;
 		Scanner scanner = new Scanner(System.in);
 		String userInput;

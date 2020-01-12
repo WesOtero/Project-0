@@ -13,7 +13,7 @@ public class Car {
 	// Users can make offers for the car, so each car has a HashSet of offers
 	// <"Username","Offer Amount">
 	// It is persisted by the LotDAO, which contains all car objects
-	private HashMap<String, Double> offers;
+	private HashMap<String, Double> offers = new HashMap<>();
 
 	public Car() {
 
@@ -83,7 +83,8 @@ public class Car {
 
 	public void setOffers(String username, Double offer) {
 		this.offers.put(username, offer);
-		this.offer = false;
+//		this.offers.put(username, offer);
+//		this.offer = false;
 	}
 
 	@Override
