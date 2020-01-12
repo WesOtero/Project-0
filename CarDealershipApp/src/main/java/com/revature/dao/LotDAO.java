@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.revature.pojo.Car;
 
 public class LotDAO {
-	private static HashMap<String, Car> lot = new HashMap<String, Car>();
+	private static HashMap<String, Car> lot = new HashMap<>();
 
 	public static HashMap<String, Car> getLot() {
 		return lot;

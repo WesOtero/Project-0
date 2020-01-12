@@ -6,8 +6,8 @@ import com.revature.pojo.Customer;
 import com.revature.pojo.Employee;
 
 public class UserDAO {
-	private static HashMap<String, Customer> customers = new HashMap<String, Customer>();
-	private static HashMap<String, Employee> employees = new HashMap<String, Employee>();
+	private static HashMap<String, Customer> customers = new HashMap<>();
+	private static HashMap<String, Employee> employees = new HashMap<>();
 	
 	//Customer methods
 	public static HashMap<String, Customer> getCustomers() {
