@@ -7,21 +7,24 @@ public class Car {
 	private String make;
 	private String model;
 	private String year;
+	private Double price;
 	private boolean usedCondition;
-	//Users can make offers for the car, so each car has a HashSet of offers <"Username","Offer Amount">
-	//It is persisted by the LotDAO, which contains all car objects
+	// Users can make offers for the car, so each car has a HashSet of offers
+	// <"Username","Offer Amount">
+	// It is persisted by the LotDAO, which contains all car objects
 	private HashMap<String, Double> offers;
 
 	public Car() {
 
 	}
 
-	public Car(String vinNumber, String make, String model, String year, boolean usedCondition) {
+	public Car(String vinNumber, String make, String model, String year, Double price boolean usedCondition) {
 		super();
 		this.vinNumber = vinNumber;
 		this.make = make;
 		this.model = model;
 		this.year = year;
+		this.price = price;
 		this.usedCondition = usedCondition;
 	}
 
@@ -57,6 +60,14 @@ public class Car {
 		this.year = year;
 	}
 
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
 	public boolean isUsedCondition() {
 		return usedCondition;
 	}
@@ -72,6 +83,5 @@ public class Car {
 	public void setOffers(HashMap<String, Double> offers) {
 		this.offers = offers;
 	}
-	
-	
+
 }

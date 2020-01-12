@@ -11,8 +11,12 @@ public class LotDAO {
 		return lot;
 	}
 
+	public static Car getCar(String carVin) {
+		return lot.get(carVin);
+	}
+
 	public static void addCar(String vin, Car car) {
 		lot.put(vin, car);
 	}
-	
+
 }

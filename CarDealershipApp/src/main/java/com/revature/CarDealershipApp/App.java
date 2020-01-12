@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 import com.revature.dao.UserDAO;
 import com.revature.pojo.User;
+import com.revature.service.UserAuthenticationService;
 import com.revature.service.UserRegistrationService;
+import com.revature.service.UserRemovalService;
 
 /**
  * Hello world!
@@ -15,15 +17,24 @@ public class App {
 	static User user = new User();
 	
 	public static void main(String[] args) {
-//		UserLoginService userLoginService = new UserLoginService();
-//		userLoginService.registerEmployee("rando", "rando", "root");
-//		UserRegistrationService userRegistrationService = new UserRegistrationService();
-//		userRegistrationService.registerCustomer("John", "Smoth");
-//		userRegistrationService.registerEmployee("Jane", "Smith", "root");
-//		userRegistrationService.registerCustomer("John", "Smoth");
-//		userRegistrationService.registerEmployee("Jane", "Smith", "root");
-//		System.out.println(UserDAO.getCustomers());
-//		System.out.println(UserDAO.getEmployees());
+		UserAuthenticationService userAuthServ = new UserAuthenticationService();
+		UserRegistrationService userRegServ = new UserRegistrationService();
+		UserRemovalService userRemvServ = new UserRemovalService();
+		
+//		userAuthServ.authenticateCustomer("Rando", "Person");
+		userAuthServ.authenticateEmployee("Rando", "Person");
+		
+//		userRegServ.registerCustomer("Rando", "Person");
+//		userRegServ.registerEmployee("Employee", "Employee", "root");
+//		
+//		userAuthServ.authenticateCustomer("Rando", "Person");
+//		userAuthServ.authenticateEmployee("Employee", "Employee");
+//		
+//		userRemvServ.removeUser("Employee", "Employee", "Rando");
+//		userAuthServ.authenticateCustomer("Rando", "Person");
+//		
+		System.out.println(UserDAO.getCustomers());
+		System.out.println(UserDAO.getEmployees());
 
 		menu();
 	}

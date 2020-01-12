@@ -6,12 +6,17 @@ public class UserAuthenticationService {
 
 	// Customer Login
 	public boolean authenticateCustomer(String username, String password) {
-		if (UserDAO.getCustomers().containsKey(username) && UserDAO.getCustomer(username).getPassword() == password) {
+		if (!UserDAO.getCustomers().containsKey(username)) {
+			//TODO: Login User not found
+			System.out.println("User does not exisits");
+		} else if (UserDAO.getCustomers().containsKey(username)
+				&& UserDAO.getCustomer(username).getPassword() == password) {
 			System.out.println("You're now Logged in");
-			//TODO: Log success
+			// TODO: Log success
 			return true;
 
 		}
+		System.out.println("Failed to login");
 		// TODO: Log login failure
 		return false;
 	}
@@ -23,6 +28,8 @@ public class UserAuthenticationService {
 			// TODO: Log success
 			return true;
 		}
+
+		System.out.println("Failed to login");
 		// TODO: Log login failure
 		return false;
 	}
