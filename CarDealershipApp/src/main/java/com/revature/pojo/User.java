@@ -1,29 +1,29 @@
 package com.revature.pojo;
 
 public class User {
-	private String userName;
+	private String username;
 	private String password;
 	//Since user policy shouldn't be limited to just Emp or Cust I made it a string and not a boolean, 
 	//There is an ENUM that defines these policies
-	private String userPolicy;
+	private UserPolicy userPolicy;
 
 	public User() {
 
 	}
 
-	public User(String userName, String password, String userPolicy) {
+	public User(String username, String password, UserPolicy userPolicy) {
 		super();
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.userPolicy = userPolicy;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String userName) {
+		this.username = userName;
 	}
 
 	public String getPassword() {
@@ -34,11 +34,11 @@ public class User {
 		this.password = password;
 	}
 
-	public String getUserPolicy() {
+	public UserPolicy getUserPolicy() {
 		return userPolicy;
 	}
 
-	public void setUserPolicy(String userPolicy) {
+	public void setUserPolicy(UserPolicy userPolicy) {
 		this.userPolicy = userPolicy;
 	}
 
