@@ -9,6 +9,7 @@ public class Car {
 	private String year;
 	private boolean usedCondition;
 	//Users can make offers for the car, so each car has a HashSet of offers <"Username","Offer Amount">
+	//It is persisted by the LotDAO, which contains all car objects
 	private HashMap<String, Double> offers;
 
 	public Car() {
