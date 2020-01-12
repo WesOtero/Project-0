@@ -8,6 +8,7 @@ import com.revature.pojo.Car;
 import com.revature.pojo.Customer;
 
 public class CarBidService {
+	CustomerPaymentService customerPayServ = new CustomerPaymentService();
 	CarRemovalService carRemvServ = new CarRemovalService();
 	//User doesn't need auth because they're already past the login screen
 	public void addOffer(String vinNumber, String customer, Double offer) {
@@ -44,11 +45,13 @@ public class CarBidService {
 	
 	public void acceptOffer(String customer, String carVin) {
 		//TODO: Remove car from the lot, and assign it to a user
+		CustomerPaymentService custPayServ = new CustomerPaymentService();
 		Car car = LotDAO.getCar(carVin);
 		Customer user = UserDAO.getCustomer(customer);
 		car.setPrice(car.getOffers().get(customer));
 		user.addCar(car);
 		user.setTotalBalance(car.getPrice());
+		user.setMonthlyPayment(custPayServ.calculateMonthlyPayment(customer, carVin));
 		carRemvServ.removeCar(carVin);
 		System.out.println(user.getCarsOwned());
 		
