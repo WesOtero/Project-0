@@ -1,12 +1,14 @@
 package com.revature.pojo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Customer extends User {
 	private Double totalBalance;
 	private Double monthlyPayment;
-	ArrayList<Car> carsOwned = new ArrayList<>();
-	ArrayList<Double> payments = new ArrayList<>();
+	private ArrayList<Car> carsOwned = new ArrayList<>();
+//	ArrayList<Double> payments = new ArrayList<>();
+	private HashMap<String, Double> paymentHistory = new HashMap<>();
 	
 	public Customer(){
 		super();
@@ -36,6 +38,14 @@ public class Customer extends User {
 
 	public void addCar(Car car) {
 		this.carsOwned.add(car);
+	}
+
+	public HashMap<String, Double> getPaymentHistory() {
+		return paymentHistory;
+	}
+
+	public void addPayment(String date, Double payment) {
+		this.paymentHistory.put(date, payment);
 	}
 	
 	

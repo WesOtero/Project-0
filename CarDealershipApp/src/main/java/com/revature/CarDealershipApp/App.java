@@ -1,6 +1,7 @@
 package com.revature.CarDealershipApp;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 import com.revature.pojo.User;
 import com.revature.service.CarBidService;
@@ -49,6 +50,17 @@ public class App {
 		carBidServ.acceptOffer("Wesley", "vin1");
 		
 		custPayServ.viewCarsAndPaymentInfo("Wesley");
+		
+		custPayServ.makePayment("Wesley", 500D);
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		custPayServ.makePayment("Wesley", 500D);
+		custPayServ.makePayment("Wesley", 200D);
+		custPayServ.customerPaymentHistory("Wesley");
 		
 		
 		Boolean run = true;

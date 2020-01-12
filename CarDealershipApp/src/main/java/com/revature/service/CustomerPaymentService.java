@@ -1,5 +1,10 @@
 package com.revature.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Iterator;
+import java.util.Map;
+
 import com.revature.dao.LotDAO;
 import com.revature.dao.UserDAO;
 import com.revature.pojo.Car;
@@ -23,7 +28,6 @@ public class CustomerPaymentService {
 
 	}
 
-
 	public Double calculateMonthlyPayment(String customerUsername, String carVin) {
 
 		CarBidService carBidService = new CarBidService();
@@ -39,13 +43,37 @@ public class CustomerPaymentService {
 		System.out.println("Vehicles Owned by: " + customer + "\t Total Balance Due: $" + user.getMonthlyPayment());
 		for (Car car : user.getCarsOwned()) {
 			System.out.println("|-Vehicle: " + car.getYear() + ", " + car.getMake() + ", " + car.getModel() + ": \n"
-					+ "|-Original Price: " + car.getPrice() + "Monthly Installments: $"+ car.getPrice() /24 + "\n");
+					+ "|-Original Price: " + car.getPrice() + "Monthly Installments: $" + car.getPrice() / 24 + "\n");
 		}
 	}
 
 	public void makePayment(String customer, Double payment) {
+//	   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+//	   LocalDateTime now = LocalDateTime.now();  
+//	   System.out.println(dtf.format(now));  
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
 		Customer user = UserDAO.getCustomer(customer);
+		//Update Balance
 		user.setTotalBalance(user.getTotalBalance() - user.getMonthlyPayment());
+		user.addPayment(formatter.format(now), payment);
+		
 	}
 
+	public void customerPaymentHistory(String customer) {
+		// TODO: Users should be able to see their payments
+		Customer user = UserDAO.getCustomer(customer);
+		Iterator iterator = user.getPaymentHistory().entrySet().iterator();
+		System.out.println("Payment History:");
+		while(iterator.hasNext()) {
+			Map.Entry<String, Double> pair = (Map.Entry<String, Double>)iterator.next();
+			System.out.println(pair);
+			
+		}
+	}
+
+	public void employeePaymentView() {
+		// TODO: Employees should be able to see all of the payments
+		
+	}
 }
