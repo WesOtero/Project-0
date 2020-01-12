@@ -1,5 +1,18 @@
 package com.revature.dao;
 
-public class LotDAO {
+import java.util.HashMap;
 
+import com.revature.pojo.Car;
+
+public class LotDAO {
+	private static HashMap<String, Car> lot = new HashMap<String, Car>();
+
+	public static HashMap<String, Car> getLot() {
+		return lot;
+	}
+
+	public static void addCar(String vin, Car car) {
+		lot.put(vin, car);
+	}
+	
 }

@@ -1,5 +1,9 @@
 package com.revature.service;
 
-public class EmployeeLoginService extends UserLoginService{
+import com.revature.pojo.User;
+import com.revature.pojo.UserPolicy;
+
+public class EmployeeLoginService {
+
 
 }
