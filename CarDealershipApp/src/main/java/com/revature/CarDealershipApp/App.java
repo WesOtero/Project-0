@@ -29,8 +29,8 @@ public class App {
 		UserRemovalService userRemvServ = new UserRemovalService();
 		CarRegistrationService carRegServ = new CarRegistrationService();
 		CarViewService carViewServ = new CarViewService();
-		carRegServ.addCar("vin1", "Nissan", "Altima", "2016", 13000D);
-		carRegServ.addCar("vin2", "Nissan", "Altima", "2016", 13000D);
+		carRegServ.addCar("vin1", "N", "A", "2", 13000D, true);
+		carRegServ.addCar("vin2", "Nissan", "m", "2016", 13000D, false);
 		carViewServ.viewCars();
 		Boolean run = true;
 		Scanner scanner = new Scanner(System.in);

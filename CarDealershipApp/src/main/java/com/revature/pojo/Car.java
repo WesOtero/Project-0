@@ -9,7 +9,7 @@ public class Car {
 	private String year;
 	private Double price;
 	//Displays if there are any current offers
-	//private boolean offer;
+	private boolean offer;
 	// Users can make offers for the car, so each car has a HashSet of offers
 	// <"Username","Offer Amount">
 	// It is persisted by the LotDAO, which contains all car objects
@@ -19,14 +19,14 @@ public class Car {
 
 	}
 
-	public Car(String vinNumber, String make, String model, String year, Double price) {
+	public Car(String vinNumber, String make, String model, String year, Double price, boolean offer) {
 		super();
 		this.vinNumber = vinNumber;
 		this.make = make;
 		this.model = model;
 		this.year = year;
 		this.price = price;
-		//this.offer = isThereOffers();
+		this.offer = offer;
 	}
 
 	public String getVinNumber() {
@@ -69,17 +69,13 @@ public class Car {
 		this.price = price;
 	}
 
-//	public boolean isThereOffers() {
-//		return offer;
-//	}
-//
-//	public void setOffer() {
-//		if (this.offers.isEmpty()) {
-//			this.offer = false;
-//		} else {
-//			this.offer = true;
-//		}
-//	}
+	public boolean isThereOffers() {
+		return offer;
+	}
+
+	public void setOffer(boolean offer) {
+		this.offer = offer;
+	}
 
 	public HashMap<String, Double> getOffers() {
 		return offers;
@@ -87,12 +83,14 @@ public class Car {
 
 	public void setOffers(String username, Double offer) {
 		this.offers.put(username, offer);
+		this.offer = false;
 	}
 
 	@Override
 	public String toString() {
-		return "| " + this.vinNumber + "  \t| " + this.make + " \t| " + this.model
-				+ " \t| " + this.year + " \t| " + this.offers + " \t| ";
+		//to format the table add an amount of spaces that is equals to the longest possible value
+		return "| " + this.vinNumber + "     \t| " + this.make + "       \t| " + this.model
+				+ "      \t| " + this.year + "     \t| " + this.offer + "  \t|";
 	}
 
 }
