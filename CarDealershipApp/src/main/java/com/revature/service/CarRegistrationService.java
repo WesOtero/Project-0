@@ -23,10 +23,4 @@ public class CarRegistrationService {
 		}
 
 	}
-
-	public void removeCar(String username, String password, String carVin) {
-		if(UserDAO.getCustomers().containsKey(username) && UserDAO.getCustomer(username).getPassword().contains(password)) {
-			LotDAO.getLot().remove(carVin);
-		}
-	}
 }

@@ -18,7 +18,7 @@ public class Car {
 
 	}
 
-	public Car(String vinNumber, String make, String model, String year, Double price boolean usedCondition) {
+	public Car(String vinNumber, String make, String model, String year, Double price, boolean usedCondition) {
 		super();
 		this.vinNumber = vinNumber;
 		this.make = make;
@@ -80,8 +80,8 @@ public class Car {
 		return offers;
 	}
 
-	public void setOffers(HashMap<String, Double> offers) {
-		this.offers = offers;
+	public void setOffers(String username, Double offer) {
+		this.offers.put(username, offer);
 	}
 
 }
