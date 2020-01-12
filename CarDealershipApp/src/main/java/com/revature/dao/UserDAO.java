@@ -6,6 +6,7 @@ import com.revature.pojo.Customer;
 import com.revature.pojo.Employee;
 
 public class UserDAO {
+	//Each customer balance is kept in this data object
 	private static HashMap<String, Customer> customers = new HashMap<>();
 	private static HashMap<String, Employee> employees = new HashMap<>();
 	

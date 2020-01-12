@@ -5,17 +5,25 @@ import com.revature.pojo.Car;
 
 public class CarBidService {
 	//User doesn't need auth because they're already past the login screen
-	public void addOffer(String vinNumber, String username, Double offer) {
+	public void addOffer(String vinNumber, String customer, Double offer) {
 		if (LotDAO.getLot().containsKey(vinNumber)) {
 			Car car = LotDAO.getLot().get(vinNumber);
-			car.setOffers(username, offer);
+			car.setOffers(customer, offer);
 		}
 	}
 	
-	public void removeOffer(String custUsername, String vinNumber) {
+	//Only available in the employee menu
+	public void removeOffer(String customer, String vinNumber) {
 		if (LotDAO.getLot().containsKey(vinNumber)) {
 			Car car = LotDAO.getLot().get(vinNumber);
-			car.getOffers().remove(custUsername);
+			car.getOffers().remove(customer);
 		}
 	}
+	
+	//Grabs the offers assosiated with a car and a customer
+	public Double getCarOffer(String carVin, String customer) {
+		return LotDAO.getCar(carVin).getOffers().get(customer);
+	}
+	
+	
 }

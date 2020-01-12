@@ -78,7 +78,7 @@ public class Car {
 	}
 
 	public HashMap<String, Double> getOffers() {
-		return offers;
+		return this.offers;
 	}
 
 	public void setOffers(String username, Double offer) {
