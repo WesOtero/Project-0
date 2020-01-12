@@ -48,5 +48,11 @@ public class Customer extends User {
 		this.paymentHistory.put(date, payment);
 	}
 	
+//	public String getCarRecord() {
+//		//to format the table add an amount of spaces that is equals to the longest possible value
+//		return "| " + this.vinNumber + "     \t| " + this.make + "       \t| " + this.model
+//				+ "      \t| " + this.year + "     \t| " + this.offer + "  \t|";
+//	}
+	
 	
 }

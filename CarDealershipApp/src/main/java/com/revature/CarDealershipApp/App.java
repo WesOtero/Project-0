@@ -51,22 +51,16 @@ public class App {
 		
 		custPayServ.viewCarsAndPaymentInfo("Wesley");
 		
-		custPayServ.makePayment("Wesley", 500D);
-		try {
-			TimeUnit.SECONDS.sleep(1);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		custPayServ.makePayment("Wesley", 500D);
-		custPayServ.makePayment("Wesley", 200D);
+		custPayServ.makePayment("Wesley");
+//		custPayServ.makePayment("Wesley");
 		custPayServ.customerPaymentHistory("Wesley");
 		
+		custPayServ.employeePaymentView();
 		
 		Boolean run = true;
 		Scanner scanner = new Scanner(System.in);
 		String userInput;
-
+		custPayServ.viewCarsAndPaymentInfo("Wesley");
 		System.out.println("Welcome!");
 
 		do {

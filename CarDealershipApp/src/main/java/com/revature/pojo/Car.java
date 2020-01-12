@@ -8,12 +8,14 @@ public class Car {
 	private String model;
 	private String year;
 	private Double price;
-	//Displays if there are any current offers
+	private Double payment;
+	// Displays if there are any current offers
 	private boolean offer;
 	// Users can make offers for the car, so each car has a HashSet of offers
 	// <"Username","Offer Amount">
 	// It is persisted by the LotDAO, which contains all car objects
 	private HashMap<String, Double> offers = new HashMap<>();
+	private Integer remainingPayments;
 
 	public Car() {
 
@@ -27,6 +29,8 @@ public class Car {
 		this.year = year;
 		this.price = price;
 		this.offer = offer;
+		this.payment = 0D;
+		this.remainingPayments = 0;
 	}
 
 	public String getVinNumber() {
@@ -89,15 +93,32 @@ public class Car {
 
 	@Override
 	public String toString() {
-		//to format the table add an amount of spaces that is equals to the longest possible value
-		return "VIN: " + this.vinNumber + " Make: " + this.make + " Model: " + this.model
-				+ " Year: " + this.year;
+		// to format the table add an amount of spaces that is equals to the longest
+		// possible value
+		return "VIN: " + this.vinNumber + " Make: " + this.make + " Model: " + this.model + " Year: " + this.year;
 	}
-	
+
 	public String getCarRecord() {
-		//to format the table add an amount of spaces that is equals to the longest possible value
-		return "| " + this.vinNumber + "     \t| " + this.make + "       \t| " + this.model
-				+ "      \t| " + this.year + "     \t| " + this.offer + "  \t|";
+		// to format the table add an amount of spaces that is equals to the longest
+		// possible value
+		return "| " + this.vinNumber + "     \t| " + this.make + "       \t| " + this.model + "      \t| " + this.year
+				+ "     \t| " + this.offer + "  \t|";
 	}
-	
+
+	public Double getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Double payment) {
+		this.payment = payment;
+	}
+
+	public Integer getRemainingPayments() {
+		return remainingPayments;
+	}
+
+	public void setRemainingPayments(Integer remainingPayments) {
+		this.remainingPayments = remainingPayments;
+	}
+
 }
