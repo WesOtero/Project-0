@@ -6,7 +6,8 @@ public class Customer extends User {
 	private Double totalBalance;
 	private Double apr;
 	private Double monthlyPayment;
-	ArrayList<Car> carsOwned = new ArrayList<Car>();
+	ArrayList<Car> carsOwned = new ArrayList<>();
+	ArrayList<Double> payments = new ArrayList<>();
 	
 	public Customer(){
 		super();

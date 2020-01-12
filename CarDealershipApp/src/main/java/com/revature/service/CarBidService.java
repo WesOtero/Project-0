@@ -48,6 +48,7 @@ public class CarBidService {
 		Customer user = UserDAO.getCustomer(customer);
 		car.setPrice(car.getOffers().get(customer));
 		user.addCar(car);
+		user.setTotalBalance(car.getPrice());
 		carRemvServ.removeCar(carVin);
 		System.out.println(user.getCarsOwned());
 		
