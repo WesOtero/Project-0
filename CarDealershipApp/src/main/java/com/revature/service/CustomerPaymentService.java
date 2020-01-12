@@ -36,10 +36,10 @@ public class CustomerPaymentService {
 
 	public void viewCarsAndPaymentInfo(String customer) {
 		Customer user = UserDAO.getCustomer(customer);
-		System.out.println("Vehicles Owned:");
+		System.out.println("Vehicles Owned by: " + customer + "\t Total Balance Due: $" + user.getMonthlyPayment());
 		for (Car car : user.getCarsOwned()) {
 			System.out.println("|-Vehicle: " + car.getYear() + ", " + car.getMake() + ", " + car.getModel() + ": \n"
-					+ "|-Original Price: " + car.getPrice() + "Monthly Installments: "+ user.getMonthlyPayment() + "\n");
+					+ "|-Original Price: " + car.getPrice() + "Monthly Installments: $"+ car.getPrice() /24 + "\n");
 		}
 	}
 

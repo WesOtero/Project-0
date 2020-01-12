@@ -39,8 +39,8 @@ public class App {
 		carRegServ.addCar("vin2", "Nissan", "Altima", "2016", 13000D, false);
 		carViewServ.viewCars();
 		
-		carBidServ.addOffer("vin2", "Wesley", 1000D);
-		carBidServ.addOffer("vin1", "Wesley", 2000D);
+		carBidServ.addOffer("vin2", "Wesley", 12000D);
+		carBidServ.addOffer("vin1", "Wesley", 15000D);
 		carBidServ.addOffer("vin2", "Krista", 2000D);
 		carViewServ.viewCars();
 		carBidServ.getCarOffer("vin2", "Rando");

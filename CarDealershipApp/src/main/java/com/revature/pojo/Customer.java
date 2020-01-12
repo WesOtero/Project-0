@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class Customer extends User {
 	private Double totalBalance;
-	private Double apr;
 	private Double monthlyPayment;
 	ArrayList<Car> carsOwned = new ArrayList<>();
 	ArrayList<Double> payments = new ArrayList<>();
 	
 	public Customer(){
 		super();
+		this.totalBalance = 0D;
+		this.monthlyPayment = 0D;
 	}
 
 	public Double getTotalBalance() {
@@ -19,14 +20,6 @@ public class Customer extends User {
 
 	public void setTotalBalance(Double totalBalance) {
 		this.totalBalance = totalBalance;
-	}
-
-	public Double getApr() {
-		return apr;
-	}
-
-	public void setApr(Double apr) {
-		this.apr = apr;
 	}
 
 	public Double getMonthlyPayment() {

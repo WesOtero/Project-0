@@ -51,7 +51,7 @@ public class CarBidService {
 		car.setPrice(car.getOffers().get(customer));
 		user.addCar(car);
 		user.setTotalBalance(car.getPrice());
-		user.setMonthlyPayment(custPayServ.calculateMonthlyPayment(customer, carVin));
+		user.setMonthlyPayment(user.getMonthlyPayment() + custPayServ.calculateMonthlyPayment(customer, carVin));
 		carRemvServ.removeCar(carVin);
 		System.out.println(user.getCarsOwned());
 		
