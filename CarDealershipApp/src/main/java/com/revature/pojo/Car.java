@@ -90,8 +90,14 @@ public class Car {
 	@Override
 	public String toString() {
 		//to format the table add an amount of spaces that is equals to the longest possible value
+		return "VIN: " + this.vinNumber + " Make: " + this.make + " Model: " + this.model
+				+ " Year: " + this.year;
+	}
+	
+	public String getCarRecord() {
+		//to format the table add an amount of spaces that is equals to the longest possible value
 		return "| " + this.vinNumber + "     \t| " + this.make + "       \t| " + this.model
 				+ "      \t| " + this.year + "     \t| " + this.offer + "  \t|";
 	}
-
+	
 }

@@ -14,7 +14,7 @@ public class CarViewService {
 		System.out.println("--Vin Number------Make------------Model-----------Year------------Offers--------");
 		while(iterator.hasNext()) {
 			Map.Entry<String, Car> pair = (Map.Entry<String, Car>)iterator.next();
-			System.out.println(pair.getValue().toString());
+			System.out.println(pair.getValue().getCarRecord());
 			
 		}
 	}

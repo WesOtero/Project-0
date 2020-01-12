@@ -6,6 +6,7 @@ import com.revature.pojo.User;
 import com.revature.service.CarBidService;
 import com.revature.service.CarRegistrationService;
 import com.revature.service.CarViewService;
+import com.revature.service.CustomerPaymentService;
 import com.revature.service.UserAuthenticationService;
 import com.revature.service.UserRegistrationService;
 import com.revature.service.UserRemovalService;
@@ -31,13 +32,25 @@ public class App {
 		CarRegistrationService carRegServ = new CarRegistrationService();
 		CarViewService carViewServ = new CarViewService();
 		CarBidService carBidServ = new CarBidService();
-		userRegServ.registerCustomer("Rando", "Person");
-		carRegServ.addCar("vin1", "N", "A", "2", 13000D, true);
-		carRegServ.addCar("vin2", "Nissan", "m", "2016", 13000D, false);
+		CustomerPaymentService custPayServ = new CustomerPaymentService();
+		userRegServ.registerCustomer("Wesley", "Person");
+		userRegServ.registerCustomer("Krista", "Person");
+		carRegServ.addCar("vin1", "Nissan", "Rouge", "2013", 20000D, false);
+		carRegServ.addCar("vin2", "Nissan", "Altima", "2016", 13000D, false);
 		carViewServ.viewCars();
 		
-		carBidServ.addOffer("vin2", "Rando", 1000D);
+		carBidServ.addOffer("vin2", "Wesley", 1000D);
+		carBidServ.addOffer("vin1", "Wesley", 2000D);
+		carBidServ.addOffer("vin2", "Krista", 2000D);
+		carViewServ.viewCars();
 		carBidServ.getCarOffer("vin2", "Rando");
+		carBidServ.getCurentOffers("vin2", "Rando");
+		carBidServ.acceptOffer("Wesley", "vin2");
+		carBidServ.acceptOffer("Wesley", "vin1");
+		
+		custPayServ.viewCarsAndPaymentInfo("Wesley");
+		
+		
 		Boolean run = true;
 		Scanner scanner = new Scanner(System.in);
 		String userInput;

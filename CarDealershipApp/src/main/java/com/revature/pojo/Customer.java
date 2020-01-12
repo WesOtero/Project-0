@@ -1,9 +1,12 @@
 package com.revature.pojo;
 
+import java.util.ArrayList;
+
 public class Customer extends User {
 	private Double totalBalance;
 	private Double apr;
 	private Double monthlyPayment;
+	ArrayList<Car> carsOwned = new ArrayList<Car>();
 	
 	public Customer(){
 		super();
@@ -32,5 +35,14 @@ public class Customer extends User {
 	public void setMonthlyPayment(Double monthlyPayment) {
 		this.monthlyPayment = monthlyPayment;
 	}
+
+	public ArrayList<Car> getCarsOwned() {
+		return carsOwned;
+	}
+
+	public void addCar(Car car) {
+		this.carsOwned.add(car);
+	}
+	
 	
 }
