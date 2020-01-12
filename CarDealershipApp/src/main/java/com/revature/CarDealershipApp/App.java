@@ -2,8 +2,9 @@ package com.revature.CarDealershipApp;
 
 import java.util.Scanner;
 
-import com.revature.dao.UserDAO;
 import com.revature.pojo.User;
+import com.revature.service.CarRegistrationService;
+import com.revature.service.CarViewService;
 import com.revature.service.UserAuthenticationService;
 import com.revature.service.UserRegistrationService;
 import com.revature.service.UserRemovalService;
@@ -26,6 +27,11 @@ public class App {
 		UserAuthenticationService userAuthServ = new UserAuthenticationService();
 		UserRegistrationService userRegServ = new UserRegistrationService();
 		UserRemovalService userRemvServ = new UserRemovalService();
+		CarRegistrationService carRegServ = new CarRegistrationService();
+		CarViewService carViewServ = new CarViewService();
+		carRegServ.addCar("vin1", "Nissan", "Altima", "2016", 13000D);
+		carRegServ.addCar("vin2", "Nissan", "Altima", "2016", 13000D);
+		carViewServ.viewCars();
 		Boolean run = true;
 		Scanner scanner = new Scanner(System.in);
 		String userInput;

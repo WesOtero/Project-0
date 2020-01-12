@@ -8,7 +8,8 @@ public class Car {
 	private String model;
 	private String year;
 	private Double price;
-	private boolean usedCondition;
+	//Displays if there are any current offers
+	//private boolean offer;
 	// Users can make offers for the car, so each car has a HashSet of offers
 	// <"Username","Offer Amount">
 	// It is persisted by the LotDAO, which contains all car objects
@@ -18,14 +19,14 @@ public class Car {
 
 	}
 
-	public Car(String vinNumber, String make, String model, String year, Double price, boolean usedCondition) {
+	public Car(String vinNumber, String make, String model, String year, Double price) {
 		super();
 		this.vinNumber = vinNumber;
 		this.make = make;
 		this.model = model;
 		this.year = year;
 		this.price = price;
-		this.usedCondition = usedCondition;
+		//this.offer = isThereOffers();
 	}
 
 	public String getVinNumber() {
@@ -68,13 +69,17 @@ public class Car {
 		this.price = price;
 	}
 
-	public boolean isUsedCondition() {
-		return usedCondition;
-	}
-
-	public void setUsedCondition(boolean usedCondition) {
-		this.usedCondition = usedCondition;
-	}
+//	public boolean isThereOffers() {
+//		return offer;
+//	}
+//
+//	public void setOffer() {
+//		if (this.offers.isEmpty()) {
+//			this.offer = false;
+//		} else {
+//			this.offer = true;
+//		}
+//	}
 
 	public HashMap<String, Double> getOffers() {
 		return offers;
@@ -82,6 +87,12 @@ public class Car {
 
 	public void setOffers(String username, Double offer) {
 		this.offers.put(username, offer);
+	}
+
+	@Override
+	public String toString() {
+		return "Vin Number: " + this.vinNumber + " Make: " + this.make + " Model: " + this.model
+				+ " Year: " + this.year + " Offers: " + this.offers ;
 	}
 
 }

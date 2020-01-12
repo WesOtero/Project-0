@@ -6,7 +6,7 @@ import com.revature.pojo.Car;
 
 public class CarRegistrationService {
 	// Works as log as you are an employee
-	public void addCar(String vinNumber, String make, String model, String year, Double price, boolean condition) {
+	public void addCar(String vinNumber, String make, String model, String year, Double price) {
 		Car newCar = new Car();
 		if (!LotDAO.getLot().containsKey(vinNumber)) {
 			newCar.setVinNumber(vinNumber);
@@ -14,7 +14,8 @@ public class CarRegistrationService {
 			newCar.setModel(model);
 			newCar.setYear(year);
 			newCar.setPrice(price);
-			newCar.setUsedCondition(condition);
+			//newCar.setOffer();
+			LotDAO.addCar(vinNumber, newCar);
 			// TODO: Log car created
 			System.out.println("Vehicle created");
 		} else {
