@@ -26,45 +26,53 @@ public class App {
 	static User user = new User();
 
 	public static void main(String[] args) {
-		// Starts all services
+//		// Starts all services
 		UserAuthenticationService userAuthServ = new UserAuthenticationService();
 		UserRegistrationService userRegServ = new UserRegistrationService();
-		UserRemovalService userRemvServ = new UserRemovalService();
-		CarRegistrationService carRegServ = new CarRegistrationService();
-		CarViewService carViewServ = new CarViewService();
-		CarBidService carBidServ = new CarBidService();
-		CustomerPaymentService custPayServ = new CustomerPaymentService();
-		userRegServ.registerCustomer("Wesley", "Person");
-		userRegServ.registerCustomer("Krista", "Person");
-		carRegServ.addCar("vin1", "Nissan", "Rouge", "2013", 20000D, false);
-		carRegServ.addCar("vin2", "Nissan", "Altima", "2016", 13000D, false);
-		carViewServ.viewCars();
-		
-		carBidServ.addOffer("vin2", "Wesley", 12000D);
-		carBidServ.addOffer("vin1", "Wesley", 15000D);
-		carBidServ.addOffer("vin2", "Krista", 2000D);
-		carViewServ.viewCars();
-		carBidServ.getCarOffer("vin2", "Rando");
-		carBidServ.getCurentOffers("vin2", "Rando");
-		carBidServ.acceptOffer("Wesley", "vin2");
-		carBidServ.acceptOffer("Wesley", "vin1");
-		
-		custPayServ.viewCarsAndPaymentInfo("Wesley");
-		
-		custPayServ.makePayment("Wesley");
+//		UserRemovalService userRemvServ = new UserRemovalService();
+//		CarRegistrationService carRegServ = new CarRegistrationService();
+//		CarViewService carViewServ = new CarViewService();
+//		CarBidService carBidServ = new CarBidService();
+//		CustomerPaymentService custPayServ = new CustomerPaymentService();
+		userRegServ.registerCustomer("w", "w");
+//		userRegServ.registerCustomer("Krista", "Person");
+//		carRegServ.addCar("vin1", "Nissan", "Rouge", "2013", 20000D, false);
+//		carRegServ.addCar("vin2", "Nissan", "Altima", "2016", 13000D, false);
+//		carViewServ.viewCars();
+//		
+//		carBidServ.addOffer("vin2", "Wesley", 12000D);
+//		carBidServ.addOffer("vin1", "Wesley", 15000D);
+//		carBidServ.addOffer("vin2", "Krista", 2000D);
+//		carViewServ.viewCars();
+//		carBidServ.getCarOffer("vin2", "Rando");
+//		carBidServ.getCurentOffers("vin2", "Rando");
+//		carBidServ.acceptOffer("Wesley", "vin2");
+//		carBidServ.acceptOffer("Wesley", "vin1");
+//		
+//		custPayServ.viewCarsAndPaymentInfo("Wesley");
+//		
 //		custPayServ.makePayment("Wesley");
-		custPayServ.customerPaymentHistory("Wesley");
-		
-		custPayServ.employeePaymentView();
-		
+////		custPayServ.makePayment("Wesley");
+//		custPayServ.customerPaymentHistory("Wesley");
+//		
+//		custPayServ.employeePaymentView();
+//		
+//		Boolean run = true;
+//		Scanner scanner = new Scanner(System.in);
+//		String userInput;
+//		custPayServ.viewCarsAndPaymentInfo("Wesley");
+
+		mainMenu();
+	}
+
+//Main Menu
+	public static void mainMenu() {
+		UserAuthenticationService userAuthServ = new UserAuthenticationService();
 		Boolean run = true;
 		Scanner scanner = new Scanner(System.in);
-		String userInput;
-		custPayServ.viewCarsAndPaymentInfo("Wesley");
 		System.out.println("Welcome!");
-
 		do {
-
+						String userInput;
 			System.out.println("Please select one of our options:");
 
 			System.out.println("1. Login \n2. Create Account \n3. Exit");
@@ -72,12 +80,15 @@ public class App {
 			userInput = scanner.nextLine();
 			userInput = userInput.toUpperCase();
 
-			switch (userInput) {
+			switch (userInput.toUpperCase()) {
 			case "1":
 			case "LOGIN":
-					signInMenu(userAuthServ, scanner);
+				signInMenu();
 				break;
+				
 			case "2":
+				registrationMenu();
+				break;
 			case "CREATE":
 				break;
 			case "3":
@@ -90,38 +101,106 @@ public class App {
 			}
 
 		} while (run);
-		System.out.println("Goodbye!");
+
 		scanner.close();
+		System.out.println("Goodbye!");
 	}
 
-	public static void signInMenu(UserAuthenticationService userAuthServ, Scanner scanner) {
+//SignIn Menu
+	public static void signInMenu() {
+		UserAuthenticationService userAuth = new UserAuthenticationService();
+		String username;
+		String password;
 		String userInput;
-		System.out.println("1. For Customer Login \n2. for Employee Login");
-		
+		Scanner scanner = new Scanner(System.in);
+
+		// Prompt
+		System.out.println("LOGIN MENU:");
+		System.out.println("1. Customer Login: \n2. Employee Login: ");
 		userInput = scanner.nextLine();
-		
+
 		switch (userInput) {
 		case "1":
-				signInMenu(userAuthServ, scanner);
+			System.out.println("Username: ");
+			userInput = scanner.nextLine();
+			username = userInput;
+
+			System.out.println("Password : ");
+			userInput = scanner.nextLine();
+			password = userInput;
+			System.out.println(userAuth.authenticateCustomer(username, password));
+			if (userAuth.authenticateCustomer(username, password)) {
+				customerMenu(scanner, username);
+			}
 			break;
+			
 		case "2":
 			break;
+			
 		default:
 			System.out.println("Invalid choice, try again...");
 			break;
 		}
 //		if(userAuthServ.authenticateCustomer(username, password))
 	}
-	
-	public static void createCustomerMenu() {
 
+//Registration Menu
+	public static void registrationMenu() {
+		UserRegistrationService userRegServ = new UserRegistrationService();
+		String userInput;
+		String username;
+		String password;
+		String systemPassword;
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("\nREGISTRATION MENU");
+		System.out.println("1. Customer Registration: \n2. Employee Registration: ");
+		userInput = scanner.nextLine();
+
+		switch (userInput) {
+		case "1":
+			System.out.println("Username: ");
+			userInput = scanner.nextLine();
+			username = userInput;
+
+			System.out.println("Password : ");
+			userInput = scanner.nextLine();
+			password = userInput;
+
+			userRegServ.registerCustomer(username, password);
+			signInMenu();
+			break;
+			
+		case "2":
+			System.out.println("Username: ");
+			userInput = scanner.nextLine();
+			username = userInput;
+
+			System.out.println("Password : ");
+			userInput = scanner.nextLine();
+			password = userInput;
+
+			System.out.println("Root password : ");
+			userInput = scanner.nextLine();
+			systemPassword = userInput;
+
+			userRegServ.registerEmployee(username, password, systemPassword);
+			signInMenu();
+			break;
+			
+		default:
+			System.out.println("Invalid choice, try again...");
+			break;
+		}
 	}
 
-	public static void createEmployeeMenu() {
-
+//CustomerMenu
+	public static void customerMenu(Scanner scanner, String username) {
+		System.out.println("CUSTOMER MENU: \n Hello " + username);
 	}
 
-	public static void deleteCarMenu() {
+//EmployeeMenu
+	public static void employeeMenu(Scanner scanner, String username) {
 
 	}
 }
