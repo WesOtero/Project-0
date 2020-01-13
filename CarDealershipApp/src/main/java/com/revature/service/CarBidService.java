@@ -45,15 +45,20 @@ public class CarBidService {
 	
 	public void acceptOffer(String customer, String carVin) {
 		//TODO: Remove car from the lot, and assign it to a user
-		CustomerPaymentService custPayServ = new CustomerPaymentService();
-		Car car = LotDAO.getCar(carVin);
-		Customer user = UserDAO.getCustomer(customer);
-		car.setPrice(car.getOffers().get(customer));
-		user.addCar(car);
-		user.setTotalBalance(car.getPrice());
-		user.setMonthlyPayment(user.getMonthlyPayment() + custPayServ.calculateMonthlyPayment(customer, carVin));
-		carRemvServ.removeCar(carVin);
-		System.out.println(user.getCarsOwned());
+		if(LotDAO.getCar(carVin) != null) {
+			CustomerPaymentService custPayServ = new CustomerPaymentService();
+			Car car = LotDAO.getCar(carVin);
+			Customer user = UserDAO.getCustomer(customer);
+			car.setPrice(car.getOffers().get(customer));
+			user.addCar(car);
+			user.setTotalBalance(car.getPrice());
+			user.setMonthlyPayment(user.getMonthlyPayment() + custPayServ.calculateMonthlyPayment(customer, carVin));
+			carRemvServ.removeCar(carVin);
+			System.out.println(user.getCarsOwned());
+		}else {
+			System.out.println("Car not found");
+		}
+		
 		
 	}
 	

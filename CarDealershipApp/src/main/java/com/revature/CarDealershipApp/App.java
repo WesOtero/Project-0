@@ -27,16 +27,17 @@ public class App {
 	public static void main(String[] args) {
 //		// Starts all services
 //		UserAuthenticationService userAuthServ = new UserAuthenticationService();
-//		UserRegistrationService userRegServ = new UserRegistrationService();
+		UserRegistrationService userRegServ = new UserRegistrationService();
 //		UserRemovalService userRemvServ = new UserRemovalService();
-//		CarRegistrationService carRegServ = new CarRegistrationService();
+		CarRegistrationService carRegServ = new CarRegistrationService();
 //		CarViewService carViewServ = new CarViewService();
 //		CarBidService carBidServ = new CarBidService();
 //		CustomerPaymentService custPayServ = new CustomerPaymentService();
-//		userRegServ.registerCustomer("w", "w");
-//		userRegServ.registerCustomer("Krista", "Person");
-//		carRegServ.addCar("vin1", "Nissan", "Rouge", "2013", 20000D, false);
-//		carRegServ.addCar("vin2", "Nissan", "Altima", "2016", 13000D, false);
+		userRegServ.registerCustomer("w", "w");
+		userRegServ.registerEmployee("w", "w", "root");
+		userRegServ.registerCustomer("Krista", "Person");
+		carRegServ.addCar("vin1", "Nissan", "Rouge", "2013", 20000D);
+		carRegServ.addCar("vin2", "Nissan", "Altima", "2016", 13000D);
 //		carViewServ.viewCars();
 //		
 //		carBidServ.addOffer("vin2", "Wesley", 12000D);
@@ -91,6 +92,7 @@ public class App {
 			case "CREATE":
 				break;
 			case "3":
+				
 			case "EXIT":
 				run = false;
 				break;
@@ -145,7 +147,7 @@ public class App {
 			userInput = scanner.nextLine();
 			password = userInput;
 			if (userAuth.authenticateEmployee(username, password)) {
-				customerMenu(username);
+				employeeMenu(username);
 			}
 
 			break;
@@ -216,7 +218,7 @@ public class App {
 		CarBidService carBidServ = new CarBidService();
 
 		System.out.println("CUSTOMER MENU: \n Hello " + username);
-		System.out.println("1. Explore Cars: \n2. Make Offer: \\n3. View Cars: \\n4. View Remaining Balance: ");
+		System.out.println("1. Explore Cars: \n2. Make Offer: \n3. View Cars: \n4. View Remaining Balance: ");
 		userInput = scanner.nextLine();
 
 		switch (userInput) {
@@ -233,6 +235,7 @@ public class App {
 			System.out.println("Enter Amount: ");
 			offer = scanner.nextDouble();
 			carBidServ.addOffer(vinNumber, username, offer);
+			customerMenu(username);
 			break;
 		case "3":
 			System.out.println("--VIEW CARS--");
@@ -243,6 +246,7 @@ public class App {
 			System.out.println("Enter Amount: ");
 			offer = scanner.nextDouble();
 			carBidServ.addOffer(vinNumber, username, offer);
+			customerMenu(username);
 			break;
 		case "4":
 			System.out.println("--VIEW REMAINING BALANCE--");
@@ -253,8 +257,12 @@ public class App {
 			System.out.println("Enter Amount: ");
 			offer = scanner.nextDouble();
 			carBidServ.addOffer(vinNumber, username, offer);
+			customerMenu(username);
 			break;
-
+		case "5":
+			System.out.println("--SIGNOUT--");
+			mainMenu();
+			break;
 		default:
 			System.out.println("Invalid choice, try again...");
 			break;
@@ -273,37 +281,42 @@ public class App {
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("EMPLOYEE MENU: \n Hello " + username);
-		System.out.println("1. Add Cars: \n2. Accept Offers: \\n3. Remove Car From Lot: \\n4. View All Payments: ");
+		System.out.println("1. Add Cars: \n2. Accept Offers: \n3. Remove Car From Lot: \n4. View All Payments: ");
 		userInput = scanner.nextLine();
 
 		switch (userInput) {
 		case "1":
 			System.out.println("--ADD CARS--");
 			System.out.println("Enter VIN:");
+			vinNumber = scanner.nextLine();
 			System.out.println("Enter Make:");
+			make = scanner.nextLine();
 			System.out.println("Enter Model:");
+			model = scanner.nextLine();
 			System.out.println("Enter Year:");
+			year = scanner.nextLine();
+			scanner.nextLine();
 			System.out.println("Enter price:");
-			
+			price = scanner.nextDouble();
 			carRegServ.addCar(vinNumber, make, model, year, price);
 			vinNumber = "";
 			make = "";
 			model = "";
 			year = "";
 			price = 0D;
+			employeeMenu(username);
 			break;
-
 		case "2":
 			System.out.println("--ACCEPT OFFER--");
-			System.out.println("Enter Vehicle Identification Number(VIN): ");
+			System.out.println("Enter Customer: ");
+			customer = scanner.nextLine();
+			System.out.println("Enter VIN: ");
 			vinNumber = scanner.nextLine();
-			// Clear the scanner
-			scanner.hasNextLine();
-			System.out.println("Enter Amount: ");
-			
 			carBidServ.acceptOffer(customer, vinNumber);
 			customer = "";
 			vinNumber = "";
+
+			employeeMenu(username);
 			break;
 		case "3":
 			System.out.println("--REMOVE CARS--");
@@ -311,19 +324,17 @@ public class App {
 			vinNumber = scanner.nextLine();
 			carRemvServ.removeCar(vinNumber);
 			vinNumber = "";
-			
+
 			break;
 		case "4":
 			System.out.println("--VIEW ALL PAYMENTS--");
-			System.out.println("Enter Vehicle Identification Number(VIN): ");
-			vinNumber = scanner.nextLine();
-			// Clear the scanner
-			scanner.hasNextLine();
-			System.out.println("Enter Amount: ");
-			offer = scanner.nextDouble();
-			carBidServ.addOffer(vinNumber, username, offer);
+			custPayServ.employeePaymentView();
+			employeeMenu(username);
 			break;
-
+		case "5":
+			System.out.println("--SIGNOUT--");
+			mainMenu();
+			break;
 		default:
 			System.out.println("Invalid choice, try again...");
 			break;
