@@ -1,17 +1,17 @@
 package com.revature.service;
 
-import com.revature.dao.UserDAO;
+import com.revature.pojo.UserDB;
 
 public class UserAuthenticationService {
 
 	// Customer Login
 	public boolean authenticateCustomer(String username, String password) {
-		if (UserDAO.getCustomers().containsKey(username) && UserDAO.getCustomer(username).getPassword().equals(password)) {
+		if (UserDB.getCustomers().containsKey(username) && UserDB.getCustomer(username).getPassword().equals(password)) {
 			System.out.println("You're now Logged in");
 			// TODO: Log success
 			return true;
 
-		} else if (!UserDAO.getCustomers().containsKey(username)) {
+		} else if (!UserDB.getCustomers().containsKey(username)) {
 			// TODO: Login User not found
 			System.out.println("User does not exisits");
 			return false;
@@ -24,7 +24,7 @@ public class UserAuthenticationService {
 
 	// Employee Login
 	public boolean authenticateEmployee(String username, String password) {
-		if (UserDAO.getEmployees().containsKey(username) && UserDAO.getEmployee(username).getPassword().equals(password)) {
+		if (UserDB.getEmployees().containsKey(username) && UserDB.getEmployee(username).getPassword().equals(password)) {
 			System.out.println("You're now Logged in");
 			// TODO: Log success
 			return true;

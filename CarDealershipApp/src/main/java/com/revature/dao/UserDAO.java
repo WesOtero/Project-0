@@ -1,41 +1,58 @@
 package com.revature.dao;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
 import com.revature.pojo.Customer;
 import com.revature.pojo.Employee;
 
 public class UserDAO {
-	//Each customer balance is kept in this data object
-	private static HashMap<String, Customer> customers = new HashMap<>();
-	private static HashMap<String, Employee> employees = new HashMap<>();
-	
-	//Customer methods
-	public static HashMap<String, Customer> getCustomers() {
-		return customers;
-	}
-	
-	public static Customer getCustomer(String username) {
-		return customers.get(username);
+	// Each customer balance is kept in this data object
+	public void createEmployeeDB(HashMap<String, Employee> employees) {
+		try (FileOutputStream fos = new FileOutputStream("UserBase.dat");
+				ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+			oos.writeObject(employees);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-	public static void addCustomer(String username, Customer newUser) {
-		UserDAO.customers.put(username, newUser);
-	}
-
-	//Employee Methods
-	public static HashMap<String, Employee> getEmployees() {
+	public HashMap<String, Employee> readEmployees() {
+		HashMap<String, Employee> employees = null;
+		try (FileInputStream fis = new FileInputStream("UserBase.dat");
+				ObjectInputStream ois = new ObjectInputStream(fis);) {
+			employees = (HashMap<String, Employee>) ois.readObject();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		return employees;
 	}
-	
-	public static Employee getEmployee(String username) {
-		return employees.get(username);
+
+	public void createCustomerDB(HashMap<String, Employee> customers) {
+		try (FileOutputStream fos = new FileOutputStream("UserBase.dat");
+				ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+			oos.writeObject(customers);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
-
-	public static void addEmployee(String username, Employee newUser) {
-		UserDAO.employees.put(username, newUser);
-		
+	public HashMap<String, Customer> readCustomer() {
+		HashMap<String, Customer> customers = null;
+		try (FileInputStream fis = new FileInputStream("UserBase.dat");
+				ObjectInputStream ois = new ObjectInputStream(fis);) {
+			customers = (HashMap<String, Customer>) ois.readObject();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return customers;
 	}
-
 }

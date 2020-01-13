@@ -1,10 +1,11 @@
-package com.revature.dao;
+package com.revature.pojo;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-import com.revature.pojo.Car;
+import com.revature.dao.CarDAO;
 
-public class LotDAO {
+public class CarDB implements Serializable {
 	private static HashMap<String, Car> lot = new HashMap<>();
 
 	public static HashMap<String, Car> getLot() {
@@ -16,7 +17,15 @@ public class LotDAO {
 	}
 
 	public static void addCar(String vin, Car car) {
+		CarDAO carDAO = new CarDAO();
 		lot.put(vin, car);
+		carDAO.createCarDB(lot);
+		
 	}
+
+	public static void setLot(HashMap<String, Car> lot) {
+		CarDB.lot = lot;
+	}
+	
 
 }

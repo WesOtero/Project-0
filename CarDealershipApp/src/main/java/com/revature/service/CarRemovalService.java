@@ -1,14 +1,13 @@
 package com.revature.service;
 
-import com.revature.dao.LotDAO;
-import com.revature.dao.UserDAO;
+import com.revature.pojo.CarDB;
 
 public class CarRemovalService {
 	UserAuthenticationService userAuthServ = new UserAuthenticationService();
 
 	public void removeCar(String carVin) {
 		//TODO: Log Event
-		LotDAO.getLot().remove(carVin);
+		CarDB.getLot().remove(carVin);
 
 	}
 }

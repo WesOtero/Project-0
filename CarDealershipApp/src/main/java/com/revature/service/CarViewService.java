@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import com.revature.dao.LotDAO;
 import com.revature.pojo.Car;
+import com.revature.pojo.CarDB;
 
 public class CarViewService {
-	HashMap<String, Car> cars = LotDAO.getLot();
+	HashMap<String, Car> cars = CarDB.getLot();
 	public void viewCars() {
 		Iterator iterator = cars.entrySet().iterator();
 		System.out.println("--Vin Number------Make------------Model-----------Year------------Offers--------");
